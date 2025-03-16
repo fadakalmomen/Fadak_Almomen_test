@@ -1,166 +1,61 @@
 <template>
-  <nav class="sidebar">
+  <nav class="sidebar p-2">
     <div class="container text-center">
       <div class="row">
         <div class="col-sm-3">
-          <img src="@/assets/logo.png" alt="logo" width="88px" height="96px">
+          <img src="@/assets/logo.png" alt="logo" width="87.8px" height="96px">
         </div>
         <div class="col-sm-9">
           <div class="row">
             <div class="col-8 col-sm-6 p-4">
-              <p><strong> Hi TEAM</strong></p>
+              <p class="title">Hi TEAM</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <ul class="nav">
-      <li class="nav-item">
-        <router-link to="/dashboard" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-house-door"></i>
-          </span>
-          <span class="btn-text">Dashboard</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/orders" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-box"></i>
-          </span>
-          <span class="btn-text">Orders</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/passengers" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-people"></i>
-          </span>
-          <span class="btn-text">Passengers</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/captains" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-bus-front"></i>
-          </span>
-          <span class="btn-text">Captains</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/categories" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-list-task"></i>
-          </span>
-          <span class="btn-text">Categories</span>
-        </router-link>
-      </li>
-
-     
-      <li class="nav-item divider"></li>
-
-      <li class="nav-item">
-        <router-link to="/settlement" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-layout-text-window-reverse"></i>
-          </span>
-          <span class="btn-text">Settlement</span>
-        </router-link>
-      </li>
-
     
-      <li class="nav-item divider"></li>
-
-      <li class="nav-item">
-        <router-link to="/contact" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-person-lines-fill"></i>
-          </span>
-          <span class="btn-text">Contact</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/reviews" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-stars"></i>
-          </span>
-          <span class="btn-text">Reviews</span>
-        </router-link>
-      </li>
-
-      
-      <li class="nav-item divider"></li>
-
-      <li class="nav-item">
-        <button @click="togglePermissions" class="nav-button">
-          <span class="icon-container"></span>
-          <span class="btn-text">Permissions</span>
-          <span class="arrow" :class="{ 'rotated': showPermissions }">▼</span>
-        </button>
-        <transition name="slide">
-          <ul v-if="showPermissions" class="permissions-list">
-            <li class="permission-item">
-              <span class="icon-container">
-                <i class="bi bi-eye"></i>
-              </span>
-              <span>View Users</span>
-            </li>
-            <li class="permission-item">
-              <span class="icon-container">
-                <i class="bi bi-pencil"></i>
-              </span>
-              <span>Edit Users</span>
-            </li>
-            <li class="permission-item">
-              <span class="icon-container">
-                <i class="bi bi-trash"></i>
-              </span>
-              <span>Delete Users</span>
-            </li>
-          </ul>
-        </transition>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/translation" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-translate"></i>
-          </span>
-          <span class="btn-text">Translation</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/education-video" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-film"></i>
-          </span>
-          <span class="btn-text">Education Video</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/settings" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-gear"></i>
-          </span>
-          <span class="btn-text">Settings</span>
-        </router-link>
-      </li>
-
-      <li class="nav-item">
-        <router-link to="/content" class="nav-button" active-class="active">
-          <span class="icon-container">
-            <i class="bi bi-body-text"></i>
-          </span>
-          <span class="btn-text">Content</span>
-        </router-link>
-      </li>
+    <ul class="nav">
+      <template v-for="(section, sectionIndex) in navSections" :key="`section-${sectionIndex}`">
+        
+        <template v-for="(item, itemIndex) in section.items" :key="`item-${sectionIndex}-${itemIndex}`">
+          <li class="nav-item">
+            
+            <template v-if="!item.hasSubmenu">
+              <router-link :to="item.path" class="nav-button" active-class="active">
+                <span class="icon-container">
+                  <i :class="item.icon"></i>
+                </span>
+                <span class="btn-text">{{ item.text }}</span>
+              </router-link>
+            </template>
+            
+            
+            <template v-else>
+              <button @click="toggleSubmenu(item)" class="nav-button">
+                <span class="icon-container">
+                  <i :class="item.icon"></i>
+                </span>
+                <span class="btn-text">{{ item.text }}</span>
+                <i :class="isDropdownOpen ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+              </button>
+              <transition name="slide">
+                <ul v-if="item.isOpen" class="permissions-list">
+                  <li v-for="(subItem, subIndex) in item.submenu" :key="`subitem-${subIndex}`" class="permission-item">
+                    <span class="icon-container">
+                      <i :class="subItem.icon"></i>
+                    </span>
+                    <span>{{ subItem.text }}</span>
+                  </li>
+                </ul>
+              </transition>
+            </template>
+          </li>
+        </template>
+        
+        
+        <li v-if="sectionIndex < navSections.length - 1" class="nav-item divider"></li>
+      </template>
     </ul>
   </nav>
 </template>
@@ -170,42 +65,78 @@ export default {
   name: 'SideBar',
   data() {
     return {
-      showPermissions: false,
+      navSections: [
+        {
+          items: [
+            { path: '/dashboard', icon: 'bi bi-house-door', text: 'Dashboard' },
+            { path: '/orders', icon: 'bi bi-box', text: 'Orders' },
+            { path: '/passengers', icon: 'bi bi-people', text: 'Passengers' },
+            { path: '/captains', icon: 'bi bi-bus-front', text: 'Captains' },
+            { path: '/categories', icon: 'bi bi-list-task', text: 'Categories' }
+          ]
+        },
+        {
+          items: [
+            { path: '/settlement', icon: 'bi bi-layout-text-window-reverse', text: 'Settlement' }
+          ]
+        },
+        {
+          items: [
+            { path: '/contact', icon: 'bi bi-person-lines-fill', text: 'Contact' },
+            { path: '/reviews', icon: 'bi bi-stars', text: 'Reviews' }
+          ]
+        },
+        {
+          items: [
+            { 
+              path: '#', 
+              icon: '', 
+              text: 'Permissions', 
+              hasSubmenu: true,
+              isOpen: false,
+              submenu: [
+                { icon: 'bi bi-eye', text: 'View Users' },
+                { icon: 'bi bi-pencil', text: 'Edit Users' },
+                { icon: 'bi bi-trash', text: 'Delete Users' }
+              ]
+            },
+            { path: '/translation', icon: 'bi bi-translate', text: 'Translation' },
+            { path: '/education-video', icon: 'bi bi-film', text: 'Education Video' },
+            { path: '/settings', icon: 'bi bi-gear', text: 'Settings' },
+            { path: '/content', icon: 'bi bi-body-text', text: 'Content' }
+          ]
+        }
+      ]
     };
   },
   methods: {
-    togglePermissions() {
-      this.showPermissions = !this.showPermissions;
-    },
-  },
+    toggleSubmenu(item) {
+      item.isOpen = !item.isOpen;
+    }
+  }
 };
 </script>
 
 <style scoped>
 .sidebar {
-  width: 100%;
+  width: 300px;
   height: auto;
   background-color: #ffffff;
   padding: 1rem;
   border-right: 1px solid #ddd;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   margin: 0;
   padding-inline-start: 0%;
+  border: none;
 }
 
-.sidebar-header {
-  margin-bottom: 2rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.sidebar-header img {
-  max-width: 90%;
-  margin-bottom: 0.5rem;
+.title {
+  font-size: 14px;
+  position: relative;
+  top: 10px;
+  left: 14px;
+  font-weight: 600;
 }
 
 .nav {
@@ -247,6 +178,8 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   flex-grow: 1;
+  font-family: Manrope;
+  font-size: 15px;
 }
 
 .nav-button.active {
@@ -284,7 +217,6 @@ export default {
 .rotated {
   transform: rotate(180deg);
 }
-
 
 .divider {
   border-top: 1px solid #ddd;
