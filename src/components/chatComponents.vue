@@ -5,7 +5,7 @@
     </div>
     
     <div class="row chat-container m-0">
-      <!-- Sidebar that collapses on mobile -->
+      
       <div class="col-12 col-md-4 chat-list p-0" :class="{ 'd-none': isMobile && !showSidebar, 'd-block': !isMobile || showSidebar }">
         <div class="d-flex justify-content-end d-md-none p-2">
           <button class="btn btn-sm btn-light" @click="toggleSidebar">
@@ -15,10 +15,10 @@
         <chatDetails />
       </div>
       
-      <!-- Main content area -->
+     
       <div class="col-12 col-md-8 p-0 d-flex flex-column">
         <div class="col-12 p-0 d-flex align-items-center">
-          <!-- Mobile sidebar toggle button -->
+          
           <div class="d-md-none me-2" v-if="!showSidebar">
             <button class="btn btn-sm btn-light" @click="toggleSidebar">
               <span>☰</span>

@@ -1,6 +1,6 @@
 <template>
   <div class="chat-container">
-    <div class="profile-header p-3">
+    <div class="profile-header">
       <div class="profile-pic position-relative">
         <img src="@/assets/icon.png" alt="Profile" class="rounded-circle profile-img" />
         <span class="online-indicator position-absolute"></span>
@@ -142,19 +142,23 @@ export default {
 
 <style scoped>
 .chat-container {
-  max-height: 700px;
+  max-height: 610px;
   height: 100%;
   width: 100%;
   background-color: #ffffff;
   border-right: 1px solid #e0e0e0;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .profile-header {
   display: flex;
   align-items: center;
-  padding: 0 20px 20px;
+  padding: 12px 15px;
+  flex-shrink: 0;
 }
 
 .profile-pic {
@@ -162,14 +166,14 @@ export default {
 }
 
 .profile-img {
-  width: 45px;
-  height: 45px;
+  width: 39px;
+  height: 39px;
   object-fit: cover;
 }
 
 .online-indicator {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background-color: #36C76C;
   border-radius: 50%;
   position: absolute;
@@ -178,20 +182,22 @@ export default {
 }
 
 .profile-info {
-  margin-left: 12px;
+  margin-left: 10px;
   flex-grow: 1;
 }
 
 .profile-info h6 {
   margin: 0;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
+  line-height: 1.2;
 }
 
 .profile-info p {
   margin: 0;
-  font-size: 12px;
+  font-size: 11px;
   color: #98a4ae;
+  line-height: 1.2;
 }
 
 .options {
@@ -200,27 +206,35 @@ export default {
 }
 
 .search-bar {
-  padding: 15px 20px;
+  padding: 8px 15px;
+  flex-shrink: 0;
 }
 
 .search-bar .input-group {
   border: 1px solid #e0e0e0;
   overflow: hidden;
-  height: 30px;
+  height: 28px;
 }
 
 .search-bar .input-group-text {
   background-color: white;
   border: none;
-  size: 10px;
+  padding: 0 8px;
+  font-size: 12px;
 }
 
 .search-bar .form-control {
   border: none;
+  font-size: 12px;
+  padding: 0 8px;
 }
 
 .recent-chats {
-  margin-top: 10%;
+  margin-top: 8px;
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .recent-chats-header {
@@ -228,8 +242,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 15px;
-  padding: 0 20px;
+  margin-bottom: 8px;
+  padding: 0 15px;
+  flex-shrink: 0;
 }
 
 .title-container {
@@ -240,40 +255,57 @@ export default {
 }
 
 .recent-chats-title {
-  font-size: 14px;
+  font-size: 12px;
   color: #98a4ae;
   margin: 0;
 }
 
 .chevron-icon {
   color: #98a4ae;
-  font-size: 14px;
+  font-size: 12px;
   padding: 1px;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .dropdown-content {
   background-color: #ffffff;
   border-radius: 4px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
 .dropdown-item {
-  padding: 5px 10px;
+  padding: 4px 8px;
   cursor: pointer;
   color: #98a4ae;
+  font-size: 11px;
 }
 
 .dropdown-item:hover {
   background-color: #f5f5f5;
 }
 
+.chat-list {
+  overflow-y: auto;
+  flex-grow: 1;
+  scrollbar-width: thin;
+}
+
+.chat-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
 .chat-item {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 4px 8px;
 }
 
 .chat-item:hover {
@@ -282,18 +314,19 @@ export default {
 
 .chat-avatar {
   position: relative;
-  margin-right: 12px;
+  margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .chat-avatar img {
-  width: 45px;
-  height: 45px;
+  width: 38px;
+  height: 38px;
   object-fit: cover;
 }
 
 .status-indicator {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   position: absolute;
   bottom: 0;
@@ -314,6 +347,7 @@ export default {
 
 .chat-info {
   flex-grow: 1;
+  min-width: 0;
 }
 
 .chat-header {
@@ -327,19 +361,27 @@ export default {
 }
 
 .chat-header h6 {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
 }
 
 .chat-time {
-  font-size: 10px;
+  font-size: 9px;
   color: #98a4ae;
   margin: 0;
 }
 
 .chat-message {
-  font-size: 12px;
+  font-size: 11px;
   color: #98a4ae;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

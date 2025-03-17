@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
 .chat-container {
-  max-height: 600px;
+  max-height: 550px;
   height: 100%;
   width: 100%;
   padding-bottom: 10px;
@@ -103,7 +103,7 @@ export default {
 .chat-messages {
   flex: 1;
   padding-left: 20px;
-  padding-bottom: 90px;
+  padding-bottom: 10px;
   overflow-y: auto;
   height: 100%;
   width: 100%;
