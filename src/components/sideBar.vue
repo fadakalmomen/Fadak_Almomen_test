@@ -22,7 +22,12 @@
           <li class="nav-item">
             
             <template v-if="!item.hasSubmenu">
-              <router-link :to="item.path" class="nav-button" active-class="active">
+              <router-link 
+                :to="item.path" 
+                class="nav-button" 
+                :class="{'active': item.path === '/dashboard'}" 
+                active-class="active"
+              >
                 <span class="icon-container">
                   <i :class="item.icon"></i>
                 </span>
@@ -68,7 +73,7 @@ export default {
       navSections: [
         {
           items: [
-            { path: '/dashboard', icon: 'bi bi-house-door', text: 'Dashboard' },
+            { path: '/dashboard', icon: 'bi bi-house-door', text: 'Dashboard', isActive: true },
             { path: '/orders', icon: 'bi bi-box', text: 'Orders' },
             { path: '/passengers', icon: 'bi bi-people', text: 'Passengers' },
             { path: '/captains', icon: 'bi bi-bus-front', text: 'Captains' },
@@ -109,6 +114,7 @@ export default {
       ]
     };
   },
+ 
   methods: {
     toggleSubmenu(item) {
       item.isOpen = !item.isOpen;

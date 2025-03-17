@@ -62,9 +62,15 @@
 }
 
 .chat-btn:hover {
-  background-color: #ecebfd;
-  border-radius: 6px;
-  cursor: pointer;
+
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #707077;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  margin: 0;
 }
 
 .bi-house-door {

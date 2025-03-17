@@ -101,7 +101,7 @@ export default {
 
 
 .chat-container {
-  height: calc(100vh - 12px);
+  height: calc(100vh - 50px);
   overflow: hidden;
 }
 
@@ -132,7 +132,7 @@ export default {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 668px) and (max-width: 891px) {
   .container-fluid {
     max-width: 100%;
   }

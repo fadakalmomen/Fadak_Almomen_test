@@ -80,8 +80,8 @@ export default {
 }
 
 .profile-circle {
-  width: 44px;
-  height: 44px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -91,20 +91,20 @@ export default {
 }
 
 .profile-circle img {
-  width: 45px;
-  height: 45px;
+  width: 38px;
+  height: 38px;
   object-fit: cover;
   margin-left: 1px;
 }
 
 .online-state {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background-color: #36C76C;
   border-radius: 50%;
   position: absolute;
   bottom: 0;
-  left: 36px;
+  left: 28px;
 }
 
 .status-text {

@@ -142,7 +142,7 @@ export default {
 
 <style scoped>
 .chat-container {
-  max-height: 610px;
+  max-height: 598px;
   height: 100%;
   width: 100%;
   background-color: #ffffff;
@@ -243,7 +243,7 @@ export default {
   align-items: center;
   cursor: pointer;
   margin-bottom: 8px;
-  padding: 0 15px;
+  padding: 0 20px;
   flex-shrink: 0;
 }
 

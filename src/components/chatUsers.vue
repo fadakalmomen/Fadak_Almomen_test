@@ -80,7 +80,6 @@ export default {
     };
   },
   computed: {
-   
     filteredMessages() {
       return this.messages.filter(message => message.text || message.image);
     }
@@ -90,10 +89,9 @@ export default {
 
 <style scoped>
 .chat-container {
-  max-height: 550px;
+  max-height: 546px;
   height: 100%;
   width: 100%;
-  padding-bottom: 5px;
   background: #ffffff;
   position: relative;
   display: flex;
@@ -103,9 +101,9 @@ export default {
 .chat-messages {
   flex: 1;
   padding-left: 20px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   overflow-y: auto;
-  height: 100%;
+  height: calc(100% - 36px); 
   width: 100%;
 }
 
@@ -116,6 +114,13 @@ export default {
   padding: 0 8px;
   background: #ffffff;
   border-top: 1px solid #eaeaea;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 36px;
+  z-index: 10;
 }
 
 .image-upload-container {
@@ -213,6 +218,7 @@ export default {
   padding: 10px;
   border-radius: 10px;
   word-break: break-word;
+  border-radius: 5px;
 }
 
 .sender .message {
