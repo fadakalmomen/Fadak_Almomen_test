@@ -93,7 +93,7 @@ export default {
   max-height: 550px;
   height: 100%;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   background: #ffffff;
   position: relative;
   display: flex;
@@ -103,7 +103,7 @@ export default {
 .chat-messages {
   flex: 1;
   padding-left: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   overflow-y: auto;
   height: 100%;
   width: 100%;
